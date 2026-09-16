@@ -1,0 +1,60 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model RoomType {
+  id            String    @id @default(cuid())
+  slug          String    @unique
+  name          String
+  tagline       String
+  description   String
+  pricePerNight Float
+  maxOccupancy  Int
+  bedConfig     String
+  sizeSqFt      Int
+  viewType      String
+  amenities     String    // JSON string array of amenities
+  images        String    // JSON string array of image URLs
+  totalRooms    Int       // Total inventory count for this room category
+  isFeatured    Boolean   @default(false)
+  sortOrder     Int       @default(0)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  bookings      Booking[]
+}
+
+model Booking {
+  id              String    @id @default(cuid())
+  referenceNumber String    @unique
+  roomTypeId      String
+  roomType        RoomType  @relation(fields: [roomTypeId], references: [id], onDelete: Cascade)
+  checkIn         DateTime
+  checkOut        DateTime
+  nights          Int
+  guestsCount     Int
+  adults          Int
+  children        Int
+  guestName       String
+  guestEmail      String
+  guestPhone      String
+  specialRequests String?
+  totalPrice      Float
+  status          String    @default("CONFIRMED") // CONFIRMED, CANCELLED
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  @@index([checkIn, checkOut, status])
+  @@index([roomTypeId])
+}
+
+model NewsletterSubscriber {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  createdAt DateTime @default(now())
+}

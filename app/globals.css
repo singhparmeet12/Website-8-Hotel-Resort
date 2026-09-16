@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Jost:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-cormorant: 'Cormorant Garamond', Georgia, serif;
+  --font-jost: 'Jost', system-ui, sans-serif;
+
+  /* Light Theme Variables */
+  --bg-primary: #FAF6F0;
+  --bg-secondary: #F3E9DA;
+  --bg-card: rgba(255, 255, 255, 0.85);
+  --text-primary: #0F3D3E;
+  --text-secondary: #425B5C;
+  --text-muted: #738A8B;
+  --accent-gold: #C9A45C;
+  --accent-gold-hover: #B59149;
+  --accent-gold-glow: #F0D89F;
+  --border-subtle: #E8DCC9;
+  --glass-bg: rgba(15, 61, 62, 0.92);
+  --glass-border: rgba(201, 164, 92, 0.3);
+}
+
+.dark {
+  /* Dark Theme Variables */
+  --bg-primary: #061819;
+  --bg-secondary: #0A2426;
+  --bg-card: rgba(10, 36, 38, 0.85);
+  --text-primary: #F3E9DA;
+  --text-secondary: #C3D5D6;
+  --text-muted: #8AA4A6;
+  --accent-gold: #E5C378;
+  --accent-gold-hover: #D4AF37;
+  --accent-gold-glow: #F9E8B8;
+  --border-subtle: #164043;
+  --glass-bg: rgba(10, 36, 38, 0.92);
+  --glass-border: rgba(229, 195, 120, 0.35);
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-jost);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background-color: #C9A45C;
+  color: #061819;
+}
+
+/* Custom Resort Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #C9A45C;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #B59149;
+}
+
+/* Luxury Glassmorphism Utilities - GPU composited */
+.glass-teal-luxury {
+  background: rgba(15, 61, 62, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(201, 164, 92, 0.3);
+  transform: translateZ(0);
+}
+
+.dark .glass-teal-luxury {
+  background: rgba(8, 28, 30, 0.94);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(229, 195, 120, 0.35);
+  transform: translateZ(0);
+}
+
+.glass-sand-card {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid #EADDC8;
+  transform: translateZ(0);
+}
+
+.dark .glass-sand-card {
+  background: rgba(12, 38, 41, 0.9);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(25, 67, 71, 0.7);
+  transform: translateZ(0);
+}
+
+/* Safe area insets for mobile app floating footer */
+.pb-safe {
+  padding-bottom: max(1rem, env(safe-area-inset-bottom));
+}
+
+/* Gold Gradient Text */
+.gold-gradient-text {
+  background: linear-gradient(135deg, #EAD7AC 0%, #C9A45C 50%, #A6833D 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.dark .gold-gradient-text {
+  background: linear-gradient(135deg, #FFF1CE 0%, #E5C378 50%, #C9A45C 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Print Styles for Booking Confirmation Voucher */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+}
