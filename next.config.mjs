@@ -2,7 +2,9 @@
 const nextConfig = {
   typescript: { ignoreBuildErrors: true },
   eslint: { ignoreDuringBuilds: true },
-  outputFileTracingIncludes: { "/**": ["./prisma/dev.db", "./dev.db"] },
+  experimental: {
+    outputFileTracingIncludes: { "/**": ["./prisma/dev.db", "./dev.db"] },
+  },
   images: {
     formats: ['image/avif', 'image/webp'],
     minimumCacheTTL: 86400,
